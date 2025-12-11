@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot; integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link rel="icon" type="image/x.icon" href="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761587223/icon_zxmqdg.png">
+
+<title>Rangos</title>
+
+
+<style>
+    /* Cards de Categorias */
+.card-categoria {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 140px;
+  height: 160px;
+  text-align: center;
+  overflow: hidden; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
+}
+
+.card-categoria img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto 10px auto; 
+}
+
+.card-categoria p {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+}
+
+.card-categoria:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Cards de Descontos */
+.card-desconto {
+  background: #fff;
+  border-radius: 20px;
+  height: 280px;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-desconto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do topo */
+.img-area {
+  background: #f4f4f4;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.img-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Texto abaixo da imagem */
+.texto-area {
+  text-align: left; /* 👈 Alinha o texto à esquerda */
+  padding: 0 15px 10px 15px;
+}
+
+.texto-area h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.texto-area p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Logo no rodapé */
+.logo-area {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 👈 Alinha à esquerda */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-left: 15px;
+}
+
+.logo-area img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+/* Cores da faixa inferior */
+.verde { background: #ffffff; }
+.amarelo { background: #ffffff; }
+.azul { background: #ffffff; }
+.roxo { background: #ffffff; }
+
+
+/* Link */
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn-filtro {
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 25px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-filtro:hover {
+  background-color: #d40000;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.25);
+}
+
+
+
+</style>
+<!---NAVBAR-->   
+       <header>
+
+        <div class="container">
+            <div class="row" style="align-items: center; text-align: center;">
+                <div class="col-1"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761676257/logo_zmrpz2.png" alt="" width="90px" height="90px"><br></div>
+                <div class="col-2"><p style="text-align: start; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>RangOo</strong><br>Rango Rápido</p></div>
+                <div class="col-3"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593653/inicio_lpcfb3.png" alt="" width="140px" height="40px"></a></div>
+                <div class="col-3"><a href="Rangos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593754/rangos_vsvqck.png" alt="" width="140px" height="40px" ></a></div>
+                <div class="col-3"><a href="sobrenos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593755/sobre_n%C3%B3s_iys1np.png" alt="" width="140px" height="40px"></a></div>
+                
+            </div>
+        </div>
+        <hr>
+    </header>
+
+<section class="categorias my-5 text-center">
+  <h2 class="fw-bold">Pedir seu delivery no Rangoo é fácil demais! <br>Conheça as categorias.</h2>
+
+  <div class="container mt-4">
+    <div class="row justify-content-center g-3">
+
+      <div class="col-6 col-sm-3"><a href="brasileira.html">
+        <div class="card-categoria">
+          <img src="img/brasileira.png" alt="Comida Brasileira">
+          <p>Brasileira</p>
+        </div>
+      </a></div>
+      
+
+      <div class="col-6 col-sm-3"><a href="Lanches.html">
+        <div class="card-categoria">
+          <img src="img/lanches.png" alt="Lanches">
+          <p>Lanches</p>
+        </div>
+      </a></div>
+
+      <div class="col-6 col-sm-3"><a href="açaísorvetes.html">
+        <div class="card-categoria">
+          <img src="img/SORVETE E AÇAI.png" alt="Açaí e Sorvete">
+          <p>Açaí/Sorvete</p>
+        </div>
+      </a></div>
+
+      <div class="col-6 col-sm-3"><a href="doces.html">
+        <div class="card-categoria">
+          <img src="img/BOLOS E SOBREMESAS.png" alt="Doces e Bolos">
+          <p>Doces/Bolos</p>
+        </div>
+      </a></div>
+
+    </div>
+  </div>
+</section>
+
+<section class="descontos my-5 container">
+  <h3 class="fw-bold">Descontos fodas</h3>
+  <p class="text-muted mb-4">Rangos com até 40% de descontos</p>
+
+  <div class="row g-4 justify-content-center">
+  <div class="col-6 col-sm-3"><a href="brasileira2pedra.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/bc1e2fe4-f74f-42ee-a58e-0a79c9c2a3ac/202311091800_GOA3_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Picanha do Cheff</h5>
+        <p>40% de desconto em pedidos acima de R$50!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/910e69fc-2e9a-4166-9805-a468e24c5a6f/202505192307_gRo2_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="lanches3.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/4bbe97c1-be95-4e6c-945c-ca66ddfa9078/202505280952_N585_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Combo da Ilha 2.0</h5>
+        <p>40% de desconto em pedidos acima de R$80!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/4bbe97c1-be95-4e6c-945c-ca66ddfa9078/202505280934_PrUn_p.png" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="brasileira6box.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/384b9eeb-0866-4ba8-8234-925861a8a96f/202409131256_TY30_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Feijão Tropeiro</h5>
+        <p>40% de desconto em pedidos acima de R$50!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/14d507cb-073d-4e9b-b340-2b179e683129/202207141113_CHKx_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="doces1.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202212111115_Q250_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Torta Família Morango</h5>
+        <p>40% de desconto em pedidos acima de R$100!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202504041839_MvME_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+</div>
+
+<br>
+<br>
+
+ <!---botoes abaixo card-->
+   <div class="row mt-4 justify-content-center">
+    <div class="col-auto"><a href="entregagratis.html">
+      <button class="btn-filtro">ENTREGA GRÁTIS</button>
+    </a></div>
+    <div class="col-auto"><a href="menordistancia.html">
+      <button class="btn-filtro">MENOR DISTÂNCIA</button>
+    </a></div>
+    <div class="col-auto"><a href="toprangos.html">
+      <button class="btn-filtro">RANGOOSTARS</button>
+    </a></div>
+  </div>
+
+
+
+
+
+
+
+</section>
+  <footer>
+
+    <hr>
+    <br>
+    
+    <div class="container" >
+        <div class="row">
+            <div class="col-2"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761590285/logo_cabe%C3%A7a_gdxofx.png" alt="" width="150px" height="100px"></a></div>
+            <div class="col-10"><p style="text-align:center"><br>© Copyright 2025 - Rangoo - Todos os direitos reservados <br>
+            CNPJ 49.104.204/0001-61 / Tv Benjamin de Oliveira, nº 144, Esplanada, Divinopolis - CEP 35501-001</p></div>
+        </div>
+    </div>
+  
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
