@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot; integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link rel="icon" type="image/x.icon" href="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761587223/icon_zxmqdg.png">
+
+    <title>Snack & Joy - Bolos no Pote Bolo Doces Caseiros e Sobremesas</title>
+
+    <style>
+       
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 1248px;
+            margin: auto;
+        }
+
+     
+        .carousel-track {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: transform 0.5s ease;
+        }
+       
+     
+        .carousel-item-card {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+
+        .carousel-item-card img {
+            width: 320px;
+            height: 180px;
+            object-fit: cover;
+        }
+       
+       
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #333;
+            border-radius: 50%;
+            padding: 15px;
+            background-size: 50% 50%;
+        }
+
+       
+        .carousel-control-prev,
+        .carousel-control-next {
+           
+            position: static;
+            width: auto;
+            display: inline-block;
+        }
+       
+       
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+        @media (max-width: 767px) {
+            .carousel-item-card {
+                width: 90%;
+                margin: auto;
+            }
+           
+           
+        }
+
+        .card {
+            max-width: 30em;
+            flex-direction: row;
+            transition: transform 0.3s ease;
+           
+
+            
+        }
+        
+        .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+        
+
+        .card img {
+            max-width:40%;
+            margin:auto;
+            padding: 0.5em;
+            border-radius: 0.7em;
+
+
+        }
+
+        .mequilogo {
+          position: absolute;
+          top: -7%; 
+          transform: translateY(100%);
+          margin: 20%;
+        }
+
+        .preço{
+            color: darkgreen;
+        }
+
+
+.mequi {
+    position: absolute;
+top: -12%; 
+  transform: translateY(100%);
+  margin: 25.25%;
+
+}
+        
+
+
+
+.pedido {
+position: absolute;
+top: -101%; 
+  transform: translateY(100%);
+  margin: 70%;
+
+}
+l {
+    
+    color: white;}
+
+.carousel-control-next,
+.carousel-control-prev {
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+body {
+  overflow-x: hidden; /* Evita barra lateral horizontal mesmo em telas pequenas */
+}
+
+
+.loja-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0;
+}
+
+.logo-loja {
+  width: 75px;
+  height: 75px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.nome-loja {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1d;
+  margin-bottom: 6px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.avaliacao {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+  color: #717171;
+}
+
+.avaliacao {
+  display: inline-flex;           /* mantém tudo na mesma linha */
+  align-items: center;            /* centraliza verticalmente */
+  flex-wrap: wrap;
+  gap: 6px;                       /* espaço entre os elementos */
+  font-size: 14px;
+  color: #717171;
+  line-height: 1;                 /* evita deslocamento vertical */
+}
+
+/* Estrela */
+.estrela {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  color: #ffb800;
+  transform: translateY(-1px); /* leve ajuste óptico */
+  margin-right: 2px;
+}
+
+/* Nota */
+.nota {
+  font-weight: 600;
+  color: #2e2e2e;
+  margin-right: 2px;
+}
+
+/* Divisor (pontinho) */
+.divisor {
+  color: #b3b3b3;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+/* Texto de pedido mínimo */
+.pedido-minimo, .entrega, .taxa {
+  color: #717171;
+}
+
+
+@media (max-width: 768px) {
+  .nome-loja {
+    font-size: 16px;
+  }
+  .avaliacao {
+    font-size: 13px;
+  }
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+     <!---NAVBAR-->   
+       <header>
+
+        <div class="container">
+            <div class="row" style="align-items: center; text-align: center;">
+                <div class="col-1"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761676257/logo_zmrpz2.png" alt="" width="90px" height="90px"><br></div>
+                <div class="col-2"><p style="text-align: start; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>RangOo</strong><br>Rango Rápido</p></div>
+                <div class="col-3"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593653/inicio_lpcfb3.png" alt="" width="140px" height="40px"></a></div>
+                <div class="col-3"><a href="Rangos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593754/rangos_vsvqck.png" alt="" width="140px" height="40px" ></a></div>
+                <div class="col-3"><a href="sobrenos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593755/sobre_n%C3%B3s_iys1np.png" alt="" width="140px" height="40px"></a></div>
+                
+            </div>
+        </div>
+        <hr>
+    </header>
+    <br>
+    
+   
+
+    
+
+
+        <!---BANNERLOJA-->
+     <div class="container">
+        <div class="row">
+            <img src="img/banner snack & joy.png" width="1306px" height="205px" style="border-radius: 20px;">
+        </div>
+     </div>
+
+
+
+     
+      
+       <!---LOGOLOJA-->
+     <!-- LOJA HEADER -->
+<div class="container loja-header">
+  <div class="row align-items-center">
+    <!-- Logo -->
+    <div class="col-auto">
+      <img class="logo-loja" src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/e16c68e7-a691-4a1c-9d13-4c22682d5901/202412282157_7G8J_i.jpg" alt="Logo Kascão Express">
+    </div>
+
+    <!-- Info da loja -->
+    <div class="col">
+      <h3 class="nome-loja">Snack & Joy - Bolos no Pote Bolo Doces Caseiros e Sobremesas</h3>
+      <div class="avaliacao">
+        <span class="estrela">⭐</span>
+        <span class="nota">4.7</span>
+        <span class="divisor">•</span>
+        <span class="pedido-minimo">Pedido mínimo R$10,00</span>
+        <span class="divisor">•</span>
+        <span class="entrega">41–51 min</span>
+        <span class="divisor">•</span>
+        <span class="taxa">Taxa R$ 6,99</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+       <!--- CardsDestaques -->
+ <div class="container my-5">
+        <h2 class="text-center mb-4">Destaques</h2>
+
+        <div class="carousel-wrapper">
+
+            <button class="carousel-control-prev" id="carousel-prev" type="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <div class="carousel-container" id="carousel-container">
+               
+                <div class="carousel-track row g-4 flex-nowrap" id="carousel-track">
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202508212028_K1D1_i.jpg" class="" alt="Imagem 1">
+                            <div class="p-2">
+                                <h6 class="mb-1">Copo Sensação Gourmet</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Uma explosão de sabores em camadas! Esse copo irresistível combina o cremoso brigadeiro gourmet de chocolate ao leite, morangos frescos selecionados e o toque especial da Nutella, criando a mistura perfeita entre o doce e o azedinho da fruta!</p><!--111 caracteres-->
+                                <br>
+                                
+                                
+                                
+                                <h6 class="preço">A Partir de R$ 24,98</h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202506140258_5625_i.jpg" class="" alt="Imagem 2">
+                            <div class="p-2">
+                                <h6 class="mb-1">Bolo Vulcão Red Velvet com Leite Ninho e Morangos</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Um delicioso e irresistível bolo red velvet, com massa fofinha e úmida, em um tom vermelho vibrante que encanta os olhos e o paladar!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 26,98</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202506050721_3J0W_i.jpg" class="" alt="Imagem 3">
+                            <div class="p-2">
+                                <h6 class="mb-1">Bolo Vulcão Gourmet (Ferrero Rocher)</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Bolo Vulcão Gourmet ( Ferrero Rocher ) ! Nosso mini bolo é feito com massa de chocolate super macia, recheado com um creme irresistível de avelã e pedacinhos de Ferrero Rocher!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                
+                                
+                                <h6 class="preço">A Partir de R$ 26,98</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202507281143_C53I_i.jpg" class="" alt="Imagem 4">
+                            <div class="p-2">
+                                <h6 class="mb-1">Cookie Vulcão de Nutella</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Uma irresistível torta de cookies gourmet, com massa amanteigada e levemente crocante por fora, recheada com um generoso e cremoso coração de Nutella!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                
+                                <h6 class="preço">A Partir de R$ 23,98</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510091441_RB10_i.jpg" class="" alt="Imagem 5">
+                            <div class="p-2">
+                                <h6 class="mb-1">Ninho & Nutella</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Camadas generosas de bolo fofinho com creme de Leite Ninho super cremoso e Nutella derretendo a cada colherada!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 21,98</h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510081720_J6N6_i.jpg" class="" alt="Imagem 6">
+                            <div class="p-2">
+                                <h6 class="mb-1">Bolo de pote Casadinho de Morangos</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Uma verdadeira explosão de sabor! Camadas generosas de bolo de chocolate fofinho, brigadeiro cremoso, creme de Leite Ninho e morangos frescos que se unem em perfeita harmonia!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                
+                                
+                                
+                                <h6 class="preço">A Partir de R$ 21,98</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510091138_44Y0_i.jpg" class="" alt="Imagem 7">
+                            <div class="p-2">
+                                <h6 class="mb-1">Encanto Pistache & Frutas Vermelhas</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Feito com massa branca macia e leve, ele é recheado com um cremoso creme de pistache artesanal.As frutas vermelhas,adicionam um toque azedinho que contrasta perfeitamente com a doçura suave do pistache.</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                
+                                
+                                
+                                
+                                <h6 class="preço">A Partir de R$ 23,98</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="AQUI ENDEREÇO DA IMAGEM 08" class="" alt="Imagem 8">
+                            <div class="p-2">
+                                <h6 class="mb-1">Duplo Burger Queijo ou McChicken + Coca-Cola sem Açúcar</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Nesta combinação você leva 1 (um) sanduíche entre Duplo Burger Queijo ou McChicken + Coca-Cola Sem Açúcar 500ml</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 59,90</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           
+            <button class="carousel-control-next" id="carousel-next" type="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+
+        </div>
+    </div>
+    <BR>
+    <BR>
+    <BR>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Rangos da casa</h2></div>
+            </div>
+           </div>
+
+
+           <!--- CARDS RANGOs da CASA -->
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510081734_615A_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Cenoura Trufada Gourmet</h6>
+                                     <p class="card-text">Camadas macias de bolo de cenoura fofinho com uma generosa cobertura de brigadeiro trufado cremoso, que derrete a cada colherada!</p>
+                                     <h6 class="card-title">A partir de R$ 22,00</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510091151_RVJ3_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Bolo de Pote Ninho com Frutas Vermelhas
+
+</h6>
+                                     <p class="card-text">Feito de massa branca super fofinha, com recheio cremoso de leite Ninho trufado e uma camada generosa de frutas vermelhas!</p>
+                                     <h6 class="card-title">A partir de R$ 21,90</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202510101339_G3A6_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Bolo de Paçoca no Pote</h6>
+                                     <p class="card-text">Camadas fofinhas de massa branca artesanal combinadas com um cremoso recheio de paçoca e doce de amendoim!</p>
+                                     <h6 class="card-title">A partir de R$ 21,00</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202511021431_7635_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Combo Mine Vulcão + Coxinhas</h6>
+                                     <p class="card-text">Mini Bolo vulcão Super Recheado Leite Ninho, Brigadeiro e morangos; 10 coxinhas crocantes; Mini Coca-Cola geladinha 200ml.!</p>
+                                     <h6 class="card-title">A partir de R$ 39,98</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202504011346_438M_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Mini Bolo Vulcão com Recheio de Chocolate com Kinder</h6>
+                                     <p class="card-text">Mini Bolo Vulcão de Creme de Avelã, Bombom e Kinder!</p>
+                                     <h6 class="card-title">A partir de R$ 22,98</h6>
+                                 </div>
+                                 
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/e16c68e7-a691-4a1c-9d13-4c22682d5901/202506271231_1T2T_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Combo Crocante</h6>
+                                     <p class="card-text">São 12 coxinhas douradinhas, acomponhada de uma coca de 220ml!</p>
+                                     <h6 class="card-title">A partir de R$ 27,98</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+           <br>
+           <br>
+           <br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Bebidas</h2></div>
+            </div>
+           </div>
+
+           <!--- BEBIDAS -->
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/820af392-002c-47b1-bfae-d7ef31743c7f/202510032044_zjjdjuyfshd.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Coca Cola Original 200ml</h6>
+                                     <p class="card-text">Garrafa 200ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 5,00</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/820af392-002c-47b1-bfae-d7ef31743c7f/202210202324_yarqy82mshq.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Coca-Cola Original 310ml</h6>
+                                     <p class="card-text">Lata 310ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 7,00</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202305230846_Q18E_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Agua Mineral</h6>
+                                     <p class="card-text">Agua Mineral 500 ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 6,00</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202305230850_FMRR_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Agua Mineral com gás</h6>
+                                     <p class="card-text">Agua Mineral com gás 500 ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 7,00</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/820af392-002c-47b1-bfae-d7ef31743c7f/202210181755_tjjqatimy3.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Refrigerante Guaraná Antarctica 310ml</h6>
+                                     <p class="card-text">Lata 310ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 11,00</h6>
+                                 </div>
+                                 
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/820af392-002c-47b1-bfae-d7ef31743c7f/202210182234_sayn505ofej.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Suco Del Valle Néctar (sortido)</h6>
+                                     <p class="card-text">Caixa 200ml</p><br><br>
+                                     <h6 class="card-title">A partir de R$ 7,00</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carousel-track');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+           
+   
+            if (!track || !prevButton || !nextButton) return;
+
+            const items = track.querySelectorAll('.col-auto');
+            const totalItems = items.length;
+           
+            let index = 0;
+            let itemsVisible = 4;
+            let gap = 16;
+
+           
+            function getScrollAmount() {
+               
+                if (window.innerWidth < 767) {
+                    itemsVisible = 1;
+                   
+                    return track.clientWidth;
+                }
+               
+               
+                itemsVisible = 4;
+                const itemWidth = items[0].querySelector('.carousel-item-card').offsetWidth;
+                return itemWidth + gap;
+            }
+
+         
+            function moveTrack() {
+                let scrollAmount = getScrollAmount();
+                let newTransform = -index * scrollAmount;
+               
+               
+                const maxIndex = totalItems - itemsVisible;
+                if (index > maxIndex) {
+                    index = maxIndex;
+                }
+                if (index < 0) {
+                    index = 0;
+                }
+               
+                newTransform = -index * scrollAmount;
+                track.style.transform = `translateX(${newTransform}px)`;
+
+               
+                prevButton.disabled = (index === 0);
+                nextButton.disabled = (index === maxIndex);
+            }
+
+         
+            nextButton.addEventListener('click', () => {
+                const maxIndex = totalItems - itemsVisible;
+                if (index < maxIndex) {
+                    index++;
+                    moveTrack();
+                }
+            });
+
+       
+            prevButton.addEventListener('click', () => {
+                if (index > 0) {
+                    index--;
+                    moveTrack();
+                }
+            });
+
+         
+            window.addEventListener('resize', moveTrack);
+
+           
+            moveTrack();
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+      <!---Rodapé-->
+    <footer>
+
+    <hr>
+    <br>
+    <div class="container" >
+        <div class="row">
+            <div class="col-2"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761590285/logo_cabe%C3%A7a_gdxofx.png" alt="" width="150px" height="100px"></a></div>
+            <div class="col-10"><p style="text-align:center"><br>© Copyright 2025 - Rangoo - Todos os direitos reservados <br>
+            CNPJ 49.104.204/0001-61 / Tv Benjamin de Oliveira, nº 144, Esplanada, Divinopolis - CEP 35501-001</p></div>
+        </div>
+    </div>
+  
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

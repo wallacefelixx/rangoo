@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot; integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link rel="icon" type="image/x.icon" href="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761587223/icon_zxmqdg.png">
+
+    <title>Kascão Express</title>
+
+    <style>
+       
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 1248px;
+            margin: auto;
+        }
+
+     
+        .carousel-track {
+            display: flex;
+            flex-wrap: nowrap;
+            transition: transform 0.5s ease;
+        }
+       
+     
+        .carousel-item-card {
+            width: 300px;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+
+        .carousel-item-card img {
+            width: 320px;
+            height: 180px;
+            object-fit: cover;
+        }
+       
+       
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #333;
+            border-radius: 50%;
+            padding: 15px;
+            background-size: 50% 50%;
+        }
+
+       
+        .carousel-control-prev,
+        .carousel-control-next {
+           
+            position: static;
+            width: auto;
+            display: inline-block;
+        }
+       
+       
+        .carousel-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+       
+        @media (max-width: 767px) {
+            .carousel-item-card {
+                width: 90%;
+                margin: auto;
+            }
+           
+           
+        }
+
+        .card {
+            max-width: 30em;
+            flex-direction: row;
+            transition: transform 0.3s ease;
+           
+
+            
+        }
+        
+        .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+        
+
+        .card img {
+            max-width:40%;
+            margin:auto;
+            padding: 0.5em;
+            border-radius: 0.7em;
+
+
+        }
+
+        .mequilogo {
+          position: absolute;
+          top: -7%; 
+          transform: translateY(100%);
+          margin: 20%;
+        }
+
+        .preço{
+            color: darkgreen;
+        }
+
+
+.mequi {
+    position: absolute;
+top: -12%; 
+  transform: translateY(100%);
+  margin: 25.25%;
+
+}
+        
+
+
+
+.pedido {
+position: absolute;
+top: -101%; 
+  transform: translateY(100%);
+  margin: 70%;
+
+}
+l {
+    
+    color: white;}
+
+.carousel-control-next,
+.carousel-control-prev {
+  border: none;
+  background: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+
+body {
+  overflow-x: hidden; /* Evita barra lateral horizontal mesmo em telas pequenas */
+}
+
+
+.loja-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0;
+}
+
+.logo-loja {
+  width: 75px;
+  height: 75px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.nome-loja {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1d1d;
+  margin-bottom: 6px;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.avaliacao {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 14px;
+  color: #717171;
+}
+
+.avaliacao {
+  display: inline-flex;           /* mantém tudo na mesma linha */
+  align-items: center;            /* centraliza verticalmente */
+  flex-wrap: wrap;
+  gap: 6px;                       /* espaço entre os elementos */
+  font-size: 14px;
+  color: #717171;
+  line-height: 1;                 /* evita deslocamento vertical */
+}
+
+/* Estrela */
+.estrela {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  color: #ffb800;
+  transform: translateY(-1px); /* leve ajuste óptico */
+  margin-right: 2px;
+}
+
+/* Nota */
+.nota {
+  font-weight: 600;
+  color: #2e2e2e;
+  margin-right: 2px;
+}
+
+/* Divisor (pontinho) */
+.divisor {
+  color: #b3b3b3;
+  font-weight: bold;
+  margin: 0 4px;
+}
+
+/* Texto de pedido mínimo */
+.pedido-minimo, .entrega, .taxa {
+  color: #717171;
+}
+
+
+@media (max-width: 768px) {
+  .nome-loja {
+    font-size: 16px;
+  }
+  .avaliacao {
+    font-size: 13px;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+
+
+     <!---NAVBAR-->   
+       <header>
+
+        <div class="container">
+            <div class="row" style="align-items: center; text-align: center;">
+                <div class="col-1"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761676257/logo_zmrpz2.png" alt="" width="90px" height="90px"><br></div>
+                <div class="col-2"><p style="text-align: start; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>RangOo</strong><br>Rango Rápido</p></div>
+                <div class="col-3"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593653/inicio_lpcfb3.png" alt="" width="140px" height="40px"></a></div>
+                <div class="col-3"><a href="Rangos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593754/rangos_vsvqck.png" alt="" width="140px" height="40px" ></a></div>
+                <div class="col-3"><a href="sobrenos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593755/sobre_n%C3%B3s_iys1np.png" alt="" width="140px" height="40px"></a></div>
+                
+            </div>
+        </div>
+        <hr>
+    </header>
+    <br>
+    
+   
+
+    
+
+
+        <!---BANNERLOJA-->
+     <div class="container">
+        <div class="row">
+            <img src="img/kascãoexpressbanner.png" width="1306px" height="205px" style="border-radius: 20px;">
+        </div>
+     </div>
+
+
+
+             <!---LOGOLOJA-->
+     <!-- LOJA HEADER -->
+<div class="container loja-header">
+  <div class="row align-items-center">
+    <!-- Logo -->
+    <div class="col-auto">
+      <img class="logo-loja" src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/7ea32481-e192-4ccd-9469-a3e4f84925ed/202405201928_1gum_i.jpg" alt="Logo Kascão Express">
+    </div>
+
+    <!-- Info da loja -->
+    <div class="col">
+      <h3 class="nome-loja">Kascão Express Loja no Canal 2</h3>
+      <div class="avaliacao">
+        <span class="estrela">⭐</span>
+        <span class="nota">3.2</span>
+        <span class="divisor">•</span>
+        <span class="pedido-minimo">Pedido mínimo R$15,00</span>
+        <span class="divisor">•</span>
+        <span class="entrega">30–40 min</span>
+        <span class="divisor">•</span>
+        <span class="taxa">Taxa R$8,99</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+
+       <!--- CardsDestaques -->
+ <div class="container my-5">
+        <h2 class="text-center mb-4">Destaques</h2>
+
+        <div class="carousel-wrapper">
+
+            <button class="carousel-control-prev" id="carousel-prev" type="button">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+
+            <div class="carousel-container" id="carousel-container">
+               
+                <div class="carousel-track row g-4 flex-nowrap" id="carousel-track">
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405061526_A84T_i.jpg" class="" alt="Imagem 1">
+                            <div class="p-2">
+                                <h6 class="mb-1">Cookies & Cream Caramelt</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Descubra a elegância do nosso 'Cookies & Cream Caramelt'. Este cone requintado, da categoria premium, oferece uma experiência gustativa única.</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 11,70</h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231140_3Q6T_i.jpg" class="" alt="Imagem 2">
+                            <div class="p-2">
+                                <h6 class="mb-1">Picolé Maçã Verde Frupê</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Desfrute do refrescante Picolé Maçã Verde da Frupê, parte da nossa exclusiva *Promoção* da Linha Tropical. <p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 2,99</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231338_YPJ6_i.jpg" class="" alt="Imagem 3">
+                            <div class="p-2">
+                                <h6 class="mb-1">Pote Passas ao Rum Kascão</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Experimente esta combinação! <br>Delicioso Sorvete sabor Passas ao Rum Kascão<br><br> Sabor que te conquista a cada colherada.</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 37,99</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405071542_UPVL_i.jpg" class="" alt="Imagem 4">
+                            <div class="p-2">
+                                <h6 class="mb-1">Pote Brigadeiro Kascão 1,5lt</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Experimente nosso Brigadeiro Kascão, é o verdadeiro sabor de chocolate que refresca e desmancha na sua boca.<br> Sabor marcante a cada colherada!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 39,99</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202410071857_LKT7_i.jpg" class="" alt="Imagem 5">
+                            <div class="p-2">
+                                <h6 class="mb-1">Potão Flocos 3,6lt</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Super Potão de Sorvete de Flocos com pedacinhos de chocolate Kascão. <br>É sorvete pra reunir toda a familia e comemorar com alegria! </p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 37,25</h6>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405071542_7TA1_i.jpg" class="" alt="Imagem 6">
+                            <div class="p-2">
+                                <h6 class="mb-1">Pote Iogurte com Frutas Vermelhas Kascão ( Lançamento )</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Sorverte com o tradicional sabor de iorgute e um super toque de frutas vermelhas. Sem dúvidas o melhor sorvete ate o momento!</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 39,90</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231222_37K0_i.jpg" class="" alt="Imagem 7">
+                            <div class="p-2">
+                                <h6 class="mb-1">Deliciosos Picolé trek Kascão</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Picolé feitos de chocolate ao leite e coberto<br> com casquinha de chocolate.<br> zero adição de  açúcar. <br>(lançamento)</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 15,90</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <div class="carousel-item-card d-flex flex-column">
+                            <img src="AQUI ENDEREÇO DA IMAGEM 08" class="" alt="Imagem 8">
+                            <div class="p-2">
+                                <h6 class="mb-1">Duplo Burger Queijo ou McChicken + Coca-Cola sem Açúcar</h6><!---55 caracteres-->
+                                <p style="font-size: 0.85rem; margin-bottom: 0;">Nesta combinação você leva 1 (um) sanduíche entre Duplo Burger Queijo ou McChicken + Coca-Cola Sem Açúcar 500ml</p><!--111 caracteres-->
+                                <br>
+                                <br>
+                                <br>
+                                <h6 class="preço">A Partir de R$ 59,90</h6>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           
+            <button class="carousel-control-next" id="carousel-next" type="button">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Próximo</span>
+            </button>
+
+        </div>
+    </div>
+    <BR>
+    <BR>
+    <BR>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Rangos da casa</h2></div>
+            </div>
+           </div>
+
+
+           <!--- CARDS RANGOs da CASA -->
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231214_41D6_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Picolé Coco Branco <br>Zero Açúcar</h6>
+                                     <p class="card-text">O sabor mais tradicional com muitos pedacinhos de coco (Não contém glúten)</p>
+                                     <h6 class="card-title">A partir de R$ 6,00</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405061502_0NP2_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Bombom Skimo<br>com Casquinha Crock</h6>
+                                     <p class="card-text">O sabor do chocolate com recheio de ninho e chocolate branco  (Não contém glúten)</p>
+                                     <h6 class="card-title">A partir de R$ 20,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231245_01HR_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Pote Açaí Banana  <br>1.5l</h6>
+                                     <p class="card-text">Experimente essa combinação que está irresistível. Delicioso sorvete Açaí  com doce de babana.</p>
+                                     <h6 class="card-title">A partir de R$ 48,99</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405071638_WQQT_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Mask Cookies & Cream Caramelt <br>Kascão</h6>
+                                     <p class="card-text">Sorvete sabor artificial de baunilha e mesclado com amendoim crocante e caramelo.</p>
+                                     <h6 class="card-title">A partir de R$ 15,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/77d12a1e-c492-4ad2-8410-f4b7b55fb606/202405071350_28LU_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Delicioso Picolé Pinta Língua Linha Infantil</h6>
+                                     <p class="card-text">Experimente. Sorvete sabor iogurte, mesclado com polpa de amoraque está irresistível.</p>
+                                     <h6 class="card-title">A partir de R$ 4,50</h6>
+                                 </div>
+                                 
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/a88c9df4-4faf-4c01-bd80-a9de0ff4e455/202404231031_630P_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Paleta de Abacaxi ao Vinho (Lançamento)</h6>
+                                     <p class="card-text">Experimente nossas Paletas Mexicanas. Cada mordida te leva a uma viagem de sabor.</p>
+                                     <h6 class="card-title">A partir de R$ 11,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+           <br>
+           <br>
+           <br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Complementos</h2></div>
+            </div>
+           </div>
+
+           <!--- BEBIDAS -->
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/8a76ae3d-00eb-40b0-b141-07f484125712/202509021848_8Z11_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Cobertura Sabor Blue Ice</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 15,99</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/8a76ae3d-00eb-40b0-b141-07f484125712/202408261837_6LXB_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Cobertura sabor morango</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 15,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/8a76ae3d-00eb-40b0-b141-07f484125712/202408261838_43DT_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Cobertura sabor caramelo</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 15,99</h6>
+                                 </div>
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/8a76ae3d-00eb-40b0-b141-07f484125712/202408261849_iXYg_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Casquinha crocante c/10</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 10,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+           <div class="container">
+            <div class="row">
+                <div class="col">
+                         <div class="card">
+                             <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/14babbf7-ad92-408a-a321-3fb47d78f7fa/202407091730_P0JH_i.jpg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Cobertura Leite condensado</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 15,99</h6>
+                                 </div>
+                                 
+                         </div>
+                </div>
+
+                <div class="col">
+                        <div class="card">
+                            <img class="card-img-top" src="https://static.ifood-static.com.br/image/upload/t_low/pratos/14babbf7-ad92-408a-a321-3fb47d78f7fa/202102081450_CTyv_.jpeg" alt="Imagem de capa do card">
+                                 <div class="card-body">
+                                     <h6 class="card-title">Casquinha crocante c/5</h6>
+                                     <p class="card-text"><br><br><br></p>
+                                     <h6 class="card-title">R$ 10,99</h6>
+                                 </div>
+                        </div>
+
+                </div>
+            </div>
+               
+           </div><br>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.getElementById('carousel-track');
+            const prevButton = document.getElementById('carousel-prev');
+            const nextButton = document.getElementById('carousel-next');
+           
+   
+            if (!track || !prevButton || !nextButton) return;
+
+            const items = track.querySelectorAll('.col-auto');
+            const totalItems = items.length;
+           
+            let index = 0;
+            let itemsVisible = 4;
+            let gap = 16;
+
+           
+            function getScrollAmount() {
+               
+                if (window.innerWidth < 767) {
+                    itemsVisible = 1;
+                   
+                    return track.clientWidth;
+                }
+               
+               
+                itemsVisible = 4;
+                const itemWidth = items[0].querySelector('.carousel-item-card').offsetWidth;
+                return itemWidth + gap;
+            }
+
+         
+            function moveTrack() {
+                let scrollAmount = getScrollAmount();
+                let newTransform = -index * scrollAmount;
+               
+               
+                const maxIndex = totalItems - itemsVisible;
+                if (index > maxIndex) {
+                    index = maxIndex;
+                }
+                if (index < 0) {
+                    index = 0;
+                }
+               
+                newTransform = -index * scrollAmount;
+                track.style.transform = `translateX(${newTransform}px)`;
+
+               
+                prevButton.disabled = (index === 0);
+                nextButton.disabled = (index === maxIndex);
+            }
+
+         
+            nextButton.addEventListener('click', () => {
+                const maxIndex = totalItems - itemsVisible;
+                if (index < maxIndex) {
+                    index++;
+                    moveTrack();
+                }
+            });
+
+       
+            prevButton.addEventListener('click', () => {
+                if (index > 0) {
+                    index--;
+                    moveTrack();
+                }
+            });
+
+         
+            window.addEventListener('resize', moveTrack);
+
+           
+            moveTrack();
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+      <!---Rodapé-->
+    <footer>
+
+    <hr>
+    <br>
+    <div class="container" >
+        <div class="row">
+            <div class="col-2"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761590285/logo_cabe%C3%A7a_gdxofx.png" alt="" width="150px" height="100px"></a></div>
+            <div class="col-10"><p style="text-align:center"><br>© Copyright 2025 - Rangoo - Todos os direitos reservados <br>
+            CNPJ 49.104.204/0001-61 / Tv Benjamin de Oliveira, nº 144, Esplanada, Divinopolis - CEP 35501-001</p></div>
+        </div>
+    </div>
+  
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

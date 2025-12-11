@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js&quot; integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+   <link rel="icon" type="image/x.icon" href="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761587223/icon_zxmqdg.png">
+
+<title>70% off de respeito</title>
+
+
+<style>
+    /* Cards de Categorias */
+.card-categoria {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 140px;
+  height: 160px;
+  text-align: center;
+  overflow: hidden; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
+}
+
+.card-categoria img {
+  width: 100%;
+  height: auto;
+  object-fit: contain; 
+  display: block;
+  margin: 0 auto 10px auto; 
+}
+
+.card-categoria p {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0;
+}
+
+.card-categoria:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* Cards de Descontos */
+.card-desconto {
+  background: #fff;
+  border-radius: 20px;
+  height: 280px;
+  position: relative;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-desconto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagem do topo */
+.img-area {
+  background: #f4f4f4;
+  border-radius: 15px;
+  overflow: hidden;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.img-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Texto abaixo da imagem */
+.texto-area {
+  text-align: left; /* 👈 Alinha o texto à esquerda */
+  padding: 0 15px 10px 15px;
+}
+
+.texto-area h5 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.texto-area p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Logo no rodapé */
+.logo-area {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 👈 Alinha à esquerda */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-left: 15px;
+}
+
+.logo-area img {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+/* Cores da faixa inferior */
+.verde { background: #ffffff; }
+.amarelo { background: #ffffff; }
+.azul { background: #ffffff; }
+.roxo { background: #ffffff; }
+
+
+/* Link */
+a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.btn-filtro {
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 25px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-filtro:hover {
+  background-color: #d40000;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.25);
+}
+
+
+
+</style>
+<!---NAVBAR-->   
+       <header>
+
+        <div class="container">
+            <div class="row" style="align-items: center; text-align: center;">
+                <div class="col-1"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761676257/logo_zmrpz2.png" alt="" width="90px" height="90px"><br></div>
+                <div class="col-2"><p style="text-align: start; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"><strong>RangOo</strong><br>Rango Rápido</p></div>
+                <div class="col-3"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593653/inicio_lpcfb3.png" alt="" width="140px" height="40px"></a></div>
+                <div class="col-3"><a href="Rangos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593754/rangos_vsvqck.png" alt="" width="140px" height="40px" ></a></div>
+                <div class="col-3"><a href="Sobrenos.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761593755/sobre_n%C3%B3s_iys1np.png" alt="" width="140px" height="40px"></a></div>
+                
+            </div>
+        </div>
+        <hr>
+    </header>
+
+
+
+<section class="descontos my-5 container">
+  <h3 class="fw-bold">70% Off de Respeito.</h3>
+  <p class="text-muted mb-4">Sabor de chef, preço de quebrada!</p>
+
+  <div class="row g-4 justify-content-center">
+  <div class="col-6 col-sm-3"><a href="brasileira1suprema.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/5aa1ff41-dcb2-4d7f-b9e9-a0f0f380113a/202510181432_J32K_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Lasanha Suprema</h5>
+        <p>70% de desconto em pedidos acima de R$50!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/5aa1ff41-dcb2-4d7f-b9e9-a0f0f380113a/202506192016_y7ha_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+   <div class="col-6 col-sm-3"><a href="brasileira3fresco.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/399ad823-9cd4-4f4c-82ea-6bd1410147ab/202510160908_68UI_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Parmegiana Frango + Acai</h5>
+        <p>70% de desconto em pedidos acima de R$50!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/399ad823-9cd4-4f4c-82ea-6bd1410147ab/202509101457_6UlG_a.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="doces5.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/3fd939ff-49e7-430f-be5b-c95bac484a25/202510142052_N987_.jpeg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Ninutella/choconinho</h5>
+        <p>70% de desconto em pedidos acima de R$20!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/3fd939ff-49e7-430f-be5b-c95bac484a25/202412061530_9vfS_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="doces1.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202210221649_HY21_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Brownie com Sorvete</h5>
+        <p>70% de desconto em pedidos acima de R$30!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/3e274dc3-fefc-4a46-840e-a42a54a9b0fc/202504041839_MvME_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+ <section class="descontos my-5 container">
+  
+
+  <div class="row g-4 justify-content-center">
+  <div class="col-6 col-sm-3"><a href="lanches1.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/c0ad24e9-7ec2-43b1-a49a-7ec8df6762ce/202507091653_3Q0T_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Combo Bacon c. + Heineken</h5>
+        <p>70% de desconto em pedidos acima de R$50!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/c1131de7-5fa6-4f44-ba8a-458fdd25e7de/202208311153_517Q_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="lanches4.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/035fbf88-bbc6-4772-843e-55044c5eef3d/202309221520_F6G3_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Supremo Colosso</h5>
+        <p>70% de desconto em pedidos acima de R$40!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/035fbf88-bbc6-4772-843e-55044c5eef3d/202309161813_DPjZ_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="ygloo.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_low/pratos/7b609010-0228-497c-b4bc-f34986050e2f/202409101721_VY1C_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Iogurte Grego com Amora</h5>
+        <p>70% de desconto em pedidos acima de R$25!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/7b609010-0228-497c-b4bc-f34986050e2f/202109281353_B7bN_.jpeg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+  <div class="col-6 col-sm-3"><a href="skimo.html">
+    <div class="card-desconto">
+      <div class="img-area">
+        <img src="https://static.ifood-static.com.br/image/upload/t_medium/pratos/69d7af11-653d-445e-ae2f-0827a408d20e/202403131651_K2DY_i.jpg" alt="Pizza deliciosa">
+      </div>
+      <div class="texto-area">
+        <h5>Seletto Crocante</h5>
+        <p>70% de desconto em pedidos acima de R$12!</p>
+      </div>
+      <div class="logo-area verde">
+        <img src="https://static.ifood-static.com.br/image/upload/t_thumbnail/logosgde/5374e0bb-b02f-42b0-be20-7469378b5103/202505160816_b1nb_i.jpg" alt="Logo Restaurante">
+      </div>
+    </div>
+  </a></div>
+
+ 
+
+  
+  
+</div>
+
+  
+  
+</div>
+
+
+
+<br>
+<br>
+
+ <!---botoes abaixo card-->
+   
+
+
+
+
+
+
+
+</section>
+  <footer>
+
+    <hr>
+    <br>
+    
+    <div class="container" >
+        <div class="row">
+            <div class="col-2"><a href="index.html"><img src="https://res.cloudinary.com/drkbrzpvn/image/upload/v1761590285/logo_cabe%C3%A7a_gdxofx.png" alt="" width="150px" height="100px"></a></div>
+            <div class="col-10"><p style="text-align:center"><br>© Copyright 2025 - Rangoo - Todos os direitos reservados <br>
+            CNPJ 49.104.204/0001-61 / Tv Benjamin de Oliveira, nº 144, Esplanada, Divinopolis - CEP 35501-001</p></div>
+        </div>
+    </div>
+  
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

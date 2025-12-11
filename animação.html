@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Animação - Camaleão Delivery</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel: rgba(0,0,0,0.06);
+      --accent:#d32;
+    }
+    html,body{height:100%; margin:0; font-family: Inter, system-ui, sans-serif; background:var(--bg); display:flex; align-items:center; justify-content:center;}
+    .wrap{width:100%; max-width:1100px; padding:18px; box-sizing:border-box;}
+    .stage{
+      width:100%;
+      aspect-ratio:16/9;
+      background: linear-gradient(#fff,#f7f7f7);
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.12);
+      position:relative;
+      overflow:hidden;
+    }
+    canvas{display:block; width:100%; height:100%;}
+    .controls{
+      margin-top:12px; display:flex; gap:8px; align-items:center; justify-content:flex-start;
+    }
+    .btn{
+      background:var(--panel);
+      border:0; padding:8px 12px; border-radius:8px; cursor:pointer;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    label{font-size:14px; color:#333}
+    .slider{width:220px}
+    .note{font-size:13px; color:#555; margin-left:8px}
+    .legend{position:absolute; left:12px; top:12px; background:rgba(255,255,255,0.7); padding:8px 10px; border-radius:8px; font-weight:600; color:#222}
+    @media (max-width:600px){
+      .controls{flex-direction:column; align-items:flex-start}
+      .slider{width:160px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stage" id="stage">
+      <div class="legend">Animação: Camaleão Delivery</div>
+      <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+      <button id="playPause" class="btn">⏸️ Pausar</button>
+      <label>
+        Velocidade
+        <input id="speed" class="slider" type="range" min="0.2" max="3" step="0.05" value="1.0">
+      </label>
+      <span class="note" id="speedLabel">1.00x</span>
+      <button id="reset" class="btn">↺ Reset</button>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    // --- CONFIGURAÇÃO ---
+    // Nome do arquivo da imagem (coloque a imagem no mesmo diretório)
+    const IMG_SRC = 'chameleon_delivery.png'; // troque se necessário
+
+    // parâmetros ajustáveis (se as rodas estiverem deslocadas na sua versão da imagem,
+    // ajuste estes offsets em relação à largura/altura da imagem)
+    const WHEEL_OFF = {
+      // frações relativas (xFraction, yFraction) da posição aproximada das rodas em relação à imagem
+      rear: {x: 0.24, y: 0.66},
+      front:{x: 0.72, y: 0.66},
+      wheelRadiusFrac: 0.08 // raio da roda relativo à menor dimensão da imagem
+    };
+
+    // boca/língua (posição relativa onde desenharemos o espiral)
+    const TONGUE_POS = {x: 0.58, y: 0.36}; // relativos à imagem
+
+    // --- FIM CONFIG ---
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d', {alpha:true});
+    let W=0,H=0, DPR = Math.max(1, window.devicePixelRatio || 1);
+
+    // Estado da animação
+    let img = new Image();
+    img.src = IMG_SRC;
+    let loaded = false;
+
+    let time = 0;
+    let running = true;
+    let baseSpeed = 1.0; // multiplicador controlável
+    let positionX = 0; // posição em pixels do camaleão
+    let startTime = null;
+
+    // Adaptar tamanho do canvas ao elemento
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      W = rect.width; H = rect.height;
+      canvas.width = Math.floor(W * DPR);
+      canvas.height = Math.floor(H * DPR);
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+    }
+
+    // Quando imagem carregada, podemos ajustar e iniciar
+    img.onload = () => {
+      loaded = true;
+      resize();
+      positionX = -img.width; // começar fora da tela
+      requestAnimationFrame(loop);
+    };
+
+    // Responsivo
+    window.addEventListener('resize', () => {
+      resize();
+    });
+
+    // Util: desenhar espiral (língua)
+    function drawSpiral(cx, cy, scale, rotation, turns=1.6) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(rotation);
+      ctx.beginPath();
+      const step = 0.25;
+      for (let t=0; t<=turns*Math.PI*2+0.0001; t += step) {
+        const r = scale * (t / (turns*Math.PI*2));
+        const x = r * Math.cos(t);
+        const y = r * Math.sin(t);
+        if (t === 0) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      }
+      ctx.lineWidth = Math.max(1, 2*DPR);
+      ctx.strokeStyle = '#000';
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // Simular giro de roda desenhando anéis rotacionados
+    function drawWheelGhost(x,y,r,angle) {
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(angle);
+      ctx.beginPath();
+      ctx.arc(0,0,r,0,Math.PI*2);
+      ctx.lineWidth = Math.max(1.2, r*0.12);
+      ctx.strokeStyle = 'rgba(0,0,0,0.9)';
+      ctx.stroke();
+
+      // raios
+      ctx.lineWidth = Math.max(0.8, r*0.06);
+      const spokes = 6;
+      for (let i=0;i<spokes;i++){
+        const a = (i/spokes) * Math.PI*2;
+        ctx.beginPath();
+        ctx.moveTo(0,0);
+        ctx.lineTo(Math.cos(a)*r, Math.sin(a)*r);
+        ctx.strokeStyle = 'rgba(0,0,0,0.6)';
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Loop principal
+    function loop(ts) {
+      if (!startTime) startTime = ts;
+      const dt = (ts - (time || ts))/1000;
+      time = ts;
+
+      if (running) {
+        // atualizar posição com velocidade baseada no tamanho da tela
+        const travelWidth = W + img.width * 1.2;
+        const speedPixelsPerSec = 120 * baseSpeed; // ajuste base
+        positionX += speedPixelsPerSec * dt;
+
+        // quando passar a tela, voltar para esquerda (ciclo)
+        if (positionX > W + img.width*0.5) {
+          positionX = -img.width * 0.8 - Math.random()*80;
+        }
+      }
+
+      // desenho
+      ctx.clearRect(0,0,W,H);
+
+      // chão / sombra
+      const groundY = H * 0.78;
+      // sombra longa (elipse)
+      const shadowX = positionX + img.width*0.5 * (W/img.width);
+      const shadowW = img.width * 0.6;
+      ctx.save();
+      ctx.fillStyle = 'rgba(0,0,0,0.12)';
+      ctx.beginPath();
+      ctx.ellipse(positionX + img.width*0.5 * (W/img.width), groundY, shadowW*0.5, shadowW*0.12, 0,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+
+      // bob (levemente subir e descer)
+      const bob = Math.sin((ts/600) * baseSpeed) * 6 * baseSpeed;
+
+      // desenhar imagem escalada para caber razoavelmente na cena
+      // Queremos que a imagem tenha altura proporcional ao canvas
+      const targetImgHeight = H * 0.45; // ocupa ~45% da altura do stage
+      const scale = targetImgHeight / img.height;
+      const drawW = img.width * scale;
+      const drawH = img.height * scale;
+      const drawX = positionX;
+      const drawY = groundY - drawH - 6 + bob;
+
+      if (loaded) {
+        ctx.drawImage(img, drawX, drawY, drawW, drawH);
+      }
+
+      // posições estimadas das rodas (relativas à imagem)
+      const rearX = drawX + drawW * WHEEL_OFF.rear.x;
+      const frontX= drawX + drawW * WHEEL_OFF.front.x;
+      const wheelY = drawY + drawH * WHEEL_OFF.rear.y;
+      const wheelR = Math.min(drawW, drawH) * WHEEL_OFF.wheelRadiusFrac;
+
+      // rodar as rodas (simulação)
+      const wheelAngle = (positionX / (wheelR+1)) * 0.12; // gira proporcional ao deslocamento
+      drawWheelGhost(rearX, wheelY, wheelR, wheelAngle);
+      drawWheelGhost(frontX, wheelY, wheelR, wheelAngle);
+
+      // língua / espiral: desenhar próximo à boca
+      const tongueCx = drawX + drawW * TONGUE_POS.x;
+      const tongueCy = drawY + drawH * TONGUE_POS.y;
+      const tongueScale = Math.min(drawW, drawH) * 0.08;
+      const tongueRotation = (ts/800) * baseSpeed;
+      drawSpiral(tongueCx, tongueCy, tongueScale, tongueRotation, 1.8);
+
+      // pequenas partículas de poeira atrás da roda traseira
+      ctx.save();
+      for (let i=0;i<6;i++){
+        const t = (ts/300 + i) % 1;
+        const px = rearX - (t*160 * baseSpeed) - 8;
+        const py = wheelY + (Math.sin(ts/200 + i) * 6);
+        ctx.globalAlpha = Math.max(0, 0.9 - t*1.6);
+        ctx.fillStyle = 'rgba(0,0,0,0.06)';
+        ctx.beginPath();
+        ctx.ellipse(px, py, 6*(1-t), 3*(1-t), 0,0,Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // HUD simples (velocidade)
+      ctx.save();
+      ctx.fillStyle = 'rgba(255,255,255,0.85)';
+      ctx.fillRect(W-160, 10, 150, 36);
+      ctx.fillStyle = '#111';
+      ctx.font = '600 14px Inter, Roboto, sans-serif';
+      ctx.fillText('Velocidade: ' + baseSpeed.toFixed(2) + 'x', W-148, 33);
+      ctx.restore();
+
+      requestAnimationFrame(loop);
+    }
+
+    // CONTROLES UI
+    const playPauseBtn = document.getElementById('playPause');
+    const speedInput = document.getElementById('speed');
+    const speedLabel = document.getElementById('speedLabel');
+    const resetBtn = document.getElementById('reset');
+
+    playPauseBtn.addEventListener('click', () => {
+      running = !running;
+      playPauseBtn.textContent = running ? '⏸️ Pausar' : '▶️ Tocar';
+      if (running) {
+        // reinicia loop para evitar jump
+        time = 0;
+      }
+    });
+
+    speedInput.addEventListener('input', (e) => {
+      baseSpeed = parseFloat(e.target.value);
+      speedLabel.textContent = baseSpeed.toFixed(2) + 'x';
+    });
+
+    resetBtn.addEventListener('click', () => {
+      positionX = -img.width;
+      baseSpeed = 1.0;
+      speedInput.value = '1.0';
+      speedLabel.textContent = '1.00x';
+      running = true;
+      playPauseBtn.textContent = '⏸️ Pausar';
+    });
+
+    // start (se imagem já carregada)
+    if (img.complete && img.naturalWidth !== 0) {
+      img.onload();
+    } else {
+      // se falhar carregar, mostra mensagem no canvas
+      img.onerror = () => {
+        resize();
+        ctx.clearRect(0,0,W,H);
+        ctx.fillStyle = '#222';
+        ctx.font = '600 20px Inter, sans-serif';
+        ctx.fillText('Erro ao carregar a imagem: ' + IMG_SRC, 18, 40);
+        ctx.fillText('Coloque a imagem no mesmo diretório e nomeie como "chameleon_delivery.jpg".', 18, 72);
+      }
+    }
+
+  })();
+  </script>
+</body>
+</html>
